@@ -11,9 +11,8 @@ export async function burnToken(
 ) {
     if (wallet.publicKey != null) {
         const amount = await connection.getTokenAccountBalance(tokenAccount);
-        console.log("amount ===>", amount);
         if (amount.value.uiAmount == null) {
-            alert("amount is 0");
+            alert("amount is 0,then");
             return;
         }
         const burnInstruction = Token.createBurnInstruction(TOKEN_PROGRAM_ID, mintAddress, tokenAccount, wallet.publicKey, [], amount.value.uiAmount * 10 ** amount.value.decimals);
